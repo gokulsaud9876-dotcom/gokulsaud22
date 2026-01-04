@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart Civic Issue Reporter</title>
+
+<style>
+:root{
+  --primary:#2563eb;
+  --dark:#0f172a;
+  --light:#f8fafc;
+}
+
+*{
+  box-sizing:border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body{
+  margin:0;
+  background:linear-gradient(120deg,#0f172a,#1e293b);
+  color:var(--light);
+  overflow-x:hidden;
+}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 0 rgba(37,99,235,0.6);}
+  50%{box-shadow:0 0 30px rgba(37,99,235,0.8);}
+  100%{box-shadow:0 0 0 rgba(37,99,235,0.6);}
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px;
+  animation:fadeUp 1.2s ease;
+}
+
+.hero h1{
+  font-size:52px;
+  color:#60a5fa;
+}
+
+.hero p{
+  font-size:22px;
+  max-width:700px;
+  line-height:1.7;
+  margin:20px 0 30px;
+}
+
+.hero button{
+  padding:14px 40px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  background:var(--primary);
+  color:white;
+  cursor:pointer;
+  animation:pulse 2.5s infinite;
+}
+
+/* ---------- SECTIONS ---------- */
+.section{
+  min-height:100vh;
+  padding:80px 8%;
+  animation:fadeUp 1.2s ease;
+}
+
+.section h2{
+  font-size:42px;
+  color:#93c5fd;
+  margin-bottom:20px;
+}
+
+.section p{
+  font-size:22px;
+  max-width:900px;
+  line-height:1.8;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  margin-top:40px;
+}
+
+.card{
+  background:#020617;
+  padding:25px;
+  border-radius:18px;
+  transition:transform .3s, box-shadow .3s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 15px 40px rgba(0,0,0,.6);
+}
+
+.card h3{
+  color:#60a5fa;
+  margin-bottom:10px;
+}
+
+/* ---------- MVP FORM ---------- */
+.mvp{
+  background:#020617;
+  padding:40px;
+  border-radius:25px;
+  max-width:500px;
+  margin-top:40px;
+}
+
+.mvp input, .mvp textarea{
+  width:100%;
+  padding:12px;
+  margin:12px 0;
+  border-radius:10px;
+  border:none;
+  font-size:16px;
+}
+
+.mvp button{
+  width:100%;
+  padding:14px;
+  font-size:18px;
+  background:var(--primary);
+  border:none;
+  border-radius:12px;
+  color:white;
+  cursor:pointer;
+}
+
+.status{
+  margin-top:20px;
+  color:#22c55e;
+  font-size:18px;
+  display:none;
+}
+
+/* ---------- FOOTER ---------- */
+.footer{
+  text-align:center;
+  padding:30px;
+  font-size:16px;
+  color:#cbd5f5;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Smart Civic Issue Reporter</h1>
+  <p>
+    A modern digital platform that enables citizens to report civic issues
+    using images, automatic location capture, and intelligent validation.
+  </p>
+  <button onclick="document.getElementById('mvp').scrollIntoView()">View MVP</button>
+</section>
+
+<!-- PROBLEM -->
+<section class="section">
+  <h2>Problem</h2>
+  <p>
+    Civic issues such as potholes, garbage overflow, water leakage, and
+    broken streetlights are reported using outdated manual systems,
+    resulting in delays, lack of transparency, and poor accountability.
+  </p>
+</section>
+
+<!-- SOLUTION -->
+<section class="section">
+  <h2>Our Solution</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Image Based Reporting</h3>
+      <p>Users upload images as proof of the issue.</p>
+    </div>
+    <div class="card">
+      <h3>Auto Location Capture</h3>
+      <p>Exact location is captured automatically.</p>
+    </div>
+    <div class="card">
+      <h3>AI Validation</h3>
+      <p>AI verifies issue type and authenticity.</p>
+    </div>
+    <div class="card">
+      <h3>Fast Resolution</h3>
+      <p>Authorities receive prioritized alerts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MVP -->
+<section class="section" id="mvp">
+  <h2>Live MVP (Prototype)</h2>
+  <p>
+    This MVP demonstrates the complete user flow for reporting a civic issue.
+  </p>
+
+  <div class="mvp">
+    <input type="text" placeholder="Issue title">
+    <textarea placeholder="Describe the issue"></textarea>
+    <input type="file">
+    <button onclick="submitIssue()">Submit Issue</button>
+    <div class="status" id="status">
+      ✅ Issue submitted successfully  
+      <br>📍 Location captured  
+      <br>🤖 AI validation in progress
+    </div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section class="section">
+  <h2>Technologies Used</h2>
+  <div class="cards">
+    <div class="card"><h3>HTML, CSS, JavaScript</h3></div>
+    <div class="card"><h3>Google Maps API</h3></div>
+    <div class="card"><h3>Google Firebase</h3></div>
+    <div class="card"><h3>Google Cloud Vision</h3></div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="section">
+  <h2>Impact</h2>
+  <p>
+    This solution improves transparency, reduces fake complaints,
+    and enables faster resolution of civic issues, supporting
+    smart governance initiatives.
+  </p>
+</section>
+
+<div class="footer">
+  Smart India Hackathon • Code-based MVP
+</div>
+
+<script>
+function submitIssue(){
+  document.getElementById("status").style.display="block";
+}
+</script>
+
+</body>
+</html>
